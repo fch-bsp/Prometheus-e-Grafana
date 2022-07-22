@@ -1,0 +1,8 @@
+docker compose up -d
+docker compose ps
+docker compose logs
+docker compose pause
+docker compose unpause
+docker compose stop
+docker compose down
+docker image rm nginx:alpine
