@@ -1,4 +1,4 @@
-# Prometheus e Gragana
+# Prometheus e Grafana
 ---
 
 ### Introdução às métricas do grafana e do prometheus para kubernetes
