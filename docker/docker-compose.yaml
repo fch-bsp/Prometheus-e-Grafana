@@ -1,0 +1,26 @@
+version: "3.4"
+services:
+  pedelogo.catalogo.api:
+    image: kubedevio/pedelogo-catalogo:v1.0.0
+    ports: 
+      - 8080:80
+    environment:
+      Mongo_Host: mongodb
+      Mongo_User: mongouser
+      Mongo_Password: mongopwd
+      Mongo_Port: 27017
+      Mongo_DataBase: admin
+    depends_on:
+      - mongodb
+    networks:
+      - pedelogo_network
+  mongodb:
+    image: mongo:4.2.8
+    networks:
+      - pedelogo_network
+    enviroment:
+      MONGO_INITDB_ROOT_USERNAME: mongouser
+      MONGO_INITDB_ROOT_PASSWORD: mongopwd
+networks:
+  pedelogo_network:
+    driver: bridge      
