@@ -32,7 +32,7 @@ services:
     environment:
       MONGODB_URI: "mongodb://mongouser:mongopwd@mongodb:27017"          
   prometheus:
-    image: prom/prometheus:v2.22.0
+    image: prom/prometheus:latest
     ports:
       - "9090:9090"
     volumes:
