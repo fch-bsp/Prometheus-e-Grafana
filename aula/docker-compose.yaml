@@ -5,11 +5,11 @@ services:
     ports: 
       - 8080:80
     environment:
-      Mongo_Host: mongodb
-      Mongo_User: mongouser
-      Mongo_Password: mongopwd
-      Mongo_Port: 27017
-      Mongo_DataBase: admin
+      Mongo__Host: mongodb
+      Mongo__User: mongouser
+      Mongo__Password: mongopwd
+      Mongo__Port: 27017
+      MongoDataBase: admin
     depends_on:
       - mongodb
     networks:
@@ -21,6 +21,16 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: mongouser
       MONGO_INITDB_ROOT_PASSWORD: mongopwd
+  mongodbexporter:
+    image: fabricioveronez/mongo_exporter
+    ports:
+      - "9216:9216"
+    depends_on:
+      - mongodb
+    networks:
+      - pedelogo_network
+    environment:
+      MONGODB_URI: "mongodb://mongouser:mongopwd@mongodb:27017"          
   prometheus:
     image: prom/prometheus:v2.22.0
     ports:
@@ -29,6 +39,7 @@ services:
       - ./prometheus.yaml:/etc/prometheus/prometheus.yaml
     depends_on:
       - pedelogo.catalogo.api
+      - mongodbexporter
     networks:
       - pedelogo_network  
 networks:
