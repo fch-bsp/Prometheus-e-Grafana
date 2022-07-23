@@ -1,4 +1,4 @@
-version: "3.4"
+version: '3.4'
 services:
   pedelogo.catalogo.api:
     image: kubedevio/pedelogo-catalogo:v1.0.0
@@ -18,9 +18,19 @@ services:
     image: mongo:4.2.8
     networks:
       - pedelogo_network
-    enviroment:
+    environment:
       MONGO_INITDB_ROOT_USERNAME: mongouser
       MONGO_INITDB_ROOT_PASSWORD: mongopwd
+  prometheus:
+    image: prom/prometheus:v2.22.0
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yaml:/etc/prometheus/prometheus.yaml
+    depends_on:
+      - pedelogo.catalogo.api
+    networks:
+      - pedelogo_network  
 networks:
   pedelogo_network:
     driver: bridge      
