@@ -36,7 +36,7 @@ services:
     ports:
       - "9090:9090"
     volumes:
-      - ./prometheus.yaml:/etc/prometheus/prometheus.yml
+      - ./prometheus.yaml:/etc/prometheus/prometheus.yaml
     depends_on:
       - pedelogo.catalogo.api
       - mongodbexporter
