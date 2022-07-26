@@ -18,7 +18,6 @@ scrape_configs:
     labels: 
       grupo: "Prometheus"
 # endpoint- api
-scrape_configs:
   - job_name: Api
     honor_timetamps: true 
     scrape_interval: 5s
@@ -30,7 +29,7 @@ scrape_configs:
       - targets: ["pedelogo.catalogo.api"]
         labels:
           grupo: "webapi" 
-scrape_configs:
+# endpoint- Mongo-DB
   - job_name: MongoDBExporter
     honor_timetamps: true 
     scrape_interval: 1s
